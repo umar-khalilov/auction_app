@@ -1,0 +1,30 @@
+import z from 'zod';
+import { NODE_ENV } from '@app/constants';
+
+export const envSchema = z.object({
+    NODE_ENV: z.enum([NODE_ENV.DEVELOPMENT, NODE_ENV.PRODUCTION]),
+    SERVER_PORT: z.int(),
+    DEBUG_PORT: z.int(),
+    SERVER_URL: z.string(),
+    CLIENT_URL: z.string(),
+    DB_PORT: z.int(),
+    DB_DIALECT: z.string(),
+    DB_HOST: z.string(),
+    DB_USER: z.string(),
+    DB_NAME: z.string(),
+    DB_PASSWORD: z.string(),
+    REDIS_PORT: z.int(),
+    REDIS_HOST: z.string(),
+    REDIS_USERNAME: z.string(),
+    REDIS_PASSWORD: z.string(),
+    CACHE_TTL: z.number(),
+    JWT_ACCESS_TOKEN_SECRET: z.string(),
+    JWT_ACCESS_TOKEN_EXPIRATION_TIME: z.string(),
+    JWT_REFRESH_TOKEN_SECRET: z.string(),
+    JWT_REFRESH_TOKEN_EXPIRATION_TIME: z.string(),
+    MAX_DEVICES_AMOUNT: z.number(),
+    SMTP_HOST: z.string(),
+    SMTP_PORT: z.int(),
+    SMTP_USERNAME: z.string(),
+    SMTP_PASSWORD: z.string(),
+});

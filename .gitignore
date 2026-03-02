@@ -1,7 +1,7 @@
 # Node artifact files
 **/node_modules/
 
-server/.env/
+**/.env/
 
 # JetBrains IDE
 **/.idea/
@@ -9,4 +9,5 @@ server/.env/
 # VSCode editor
 /.vscode/
 
-
+# Zed editor
+/.zed/

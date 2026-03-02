@@ -1,0 +1,29 @@
+{
+  "name": "server-auction",
+  "version": "1.1.0",
+  "description": "Simple auction backend application",
+  "private": true,
+  "keywords": [],
+  "author": "Umar Khalilov",
+  "license": "ISC",
+  "module": "esm",
+  "scripts": {
+    "start:dev": "node --watch ./src/server.js",
+    "start:prod": "node ./src/server.js",
+    "start:debug": "node --inspect ./src/server.js"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "^2.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "faker": "^6.6.6",
+    "jsonwebtoken": "^9.0.3",
+    "knex": "^3.1.0",
+    "pg": "^8.6.0",
+    "rickmortyapi": "^2.3.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
+}
