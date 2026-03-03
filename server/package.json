@@ -8,9 +8,9 @@
   "license": "ISC",
   "module": "esm",
   "scripts": {
-    "start:dev": "node --watch ./src/server.js",
-    "start:prod": "node ./src/server.js",
-    "start:debug": "node --inspect ./src/server.js"
+    "start:dev": "node --watch ./src/main.js",
+    "start:prod": "node ./src/main.js",
+    "start:debug": "node --inspect ./src/main.js"
   },
   "dependencies": {
     "@node-rs/argon2": "^2.0.2",
@@ -20,7 +20,6 @@
     "jsonwebtoken": "^9.0.3",
     "knex": "^3.1.0",
     "pg": "^8.6.0",
-    "rickmortyapi": "^2.3.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

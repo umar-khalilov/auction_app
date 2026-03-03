@@ -776,11 +776,6 @@ resolve@^1.20.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-rickmortyapi@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/rickmortyapi/-/rickmortyapi-2.3.0.tgz#599492b81d44aed82b0be83f376a7cc576112807"
-  integrity sha512-YSAwmxS1OFRO1gYzxyZpijGXXJ5z1yDGT8U5kYqP5Qc4T3uWWQyQk8L7ty6R0HigIrGIXzht6xBpmshGhqn5sg==
-
 router@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/router/-/router-2.2.0.tgz#019be620b711c87641167cc79b99090f00b146ef"
