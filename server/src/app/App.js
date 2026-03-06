@@ -26,16 +26,10 @@ export class App {
 
     #initializeMiddlewares() {
         this.#app.all((req, res, next) => {
-            res.setHeader(
-                'Access-Control-Allow-Headers',
-                'X-Requested-With, Content-Type, Authorization, Accept'
-            );
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization, Accept');
             res.header('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Credentials', true);
-            res.header(
-                'Access-Control-Allow-Methods',
-                'GET,POST,DELETE,PUT,PATCH'
-            );
+            res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT,PATCH');
             res.header('Access-Control-Max-Age', '3600');
             next();
         });
@@ -62,11 +56,7 @@ export class App {
 
     #initializeErrorHandling() {
         this.#app.use('*', (req, res, next) => {
-            next(
-                new NotFoundException(
-                    `The requested path: ${req.path} not found`
-                )
-            );
+            next(new NotFoundException(`The requested path: ${req.path} not found`));
         });
         this.#app.use(ErrorHandler.errorHandler);
     }

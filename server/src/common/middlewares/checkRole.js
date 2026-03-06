@@ -18,11 +18,10 @@ export const checkRole = async (roles = []) => {
             const {
                 locals: { accessToken },
             } = res;
-            const { roles: userRoles } =
-                await new JwtService().verifyAccessToken(
-                    accessToken,
-                    configuration.accessJWTSecret
-                );
+            const { roles: userRoles } = await new JwtService().verifyAccessToken(
+                accessToken,
+                configuration.accessJWTSecret
+            );
             let hasRole = false;
             for (const role of userRoles) {
                 if (roles.includes(role)) {

@@ -1,27 +1,14 @@
 'use strict';
 
-exports.seed = async function(knex) {
+/**
+ * @param {import('knex').Knex} knex
+ * @returns {Promise<void>}
+ */
+export const seed = async knex => {
     try {
-        let users = await knex
-            .from('users')
-            .pluck('id')
-            .then(id => id);
-        let roles = await knex
-            .from('roles')
-            .pluck('id')
-            .then(id => id);
-
-        const generateRoleUser = key => ({
-            user_id: users[key],
-            role_id: roles[1],
-        });
-
-        const generateRolesUsers = amount => {
-            return new Array(amount)
-                .fill(null)
-                .map((_, i) => generateRoleUser(i + 1));
-        };
-        await knex('roles_users').insert(generateRolesUsers(77));
+        let user = await knex('users').where('id', 1).first('id');
+        let roleAdmin = await knex('roles').where('role', 'admin').first('id');
+        await knex('roles_users').insert({ user_id: user.id, role_id: roleAdmin.id });
     } catch (err) {
         console.error(err);
     }

@@ -8,14 +8,8 @@ import { UserService } from '@services/UserService';
 
 const main = async () => {
     try {
-        const [authService, userService] = [
-            new AuthService(),
-            new UserService(),
-        ];
-        const controllers = [
-            new AuthController(authService),
-            new UserController(userService),
-        ];
+        const [authService, userService] = [new AuthService(), new UserService()];
+        const controllers = [new AuthController(authService), new UserController(userService)];
         const app = new App(controllers);
         await app.listen();
     } catch (err) {

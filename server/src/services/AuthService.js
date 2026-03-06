@@ -8,16 +8,7 @@ export class AuthService {
      * @returns {Promise<User>}
      */
     async signUp(params) {
-        const {
-            userAgent,
-            name,
-            surname,
-            birthday,
-            gender,
-            login,
-            email,
-            password,
-        } = params;
+        const { userAgent, name, surname, birthday, gender, login, email, password } = params;
         const candidate = await User.where({ email }).fetch({ require: false });
         if (candidate) {
             throw new AlreadyExistException('User already exist');

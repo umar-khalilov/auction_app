@@ -50,10 +50,7 @@ export class UserController {
 
     #updateOne = asyncWrapper(async ({ params: { id }, body }) => {
         const updatedUser = await this.#userService.updateById(id, body);
-        return new SuccessResponse(
-            { data: updatedUser },
-            HttpStatusCodes.ACCEPTED
-        );
+        return new SuccessResponse({ data: updatedUser }, HttpStatusCodes.ACCEPTED);
     });
 
     #removeOne = asyncWrapper(async ({ params: { id } }) => {
@@ -66,11 +63,7 @@ export class UserController {
         this.router
             .route(`${this.#path}/:id`)
             .get(parseIntPipe('id'), this.#findOne)
-            .patch(
-                parseIntPipe('id'),
-                validate(updateUserSchema),
-                this.#updateOne
-            )
+            .patch(parseIntPipe('id'), validate(updateUserSchema), this.#updateOne)
             .delete(parseIntPipe('id'), this.#removeOne);
     }
 }

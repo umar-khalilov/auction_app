@@ -44,10 +44,7 @@ export class AuthController {
             ...body,
             userAgent,
         });
-        return new SuccessResponse(
-            { user: new ResponseUserDto(signedUser) },
-            HttpStatusCodes.CREATED
-        );
+        return new SuccessResponse({ user: new ResponseUserDto(signedUser) }, HttpStatusCodes.CREATED);
     });
 
     #signIn = asyncWrapper(async ({ headers, body }) => {
@@ -68,15 +65,7 @@ export class AuthController {
     */
 
     #initializeRoutes() {
-        this.router.post(
-            `${this.#path}/sign-up`,
-            validate(signUpSchema),
-            this.#signUp
-        );
-        this.router.post(
-            `${this.#path}/sign-in`,
-            validate(signInSchema),
-            this.#signIn
-        );
+        this.router.post(`${this.#path}/sign-up`, validate(signUpSchema), this.#signUp);
+        this.router.post(`${this.#path}/sign-in`, validate(signInSchema), this.#signIn);
     }
 }

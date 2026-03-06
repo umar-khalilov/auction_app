@@ -28,14 +28,12 @@ export class ErrorHandler {
     }
 
     static initializeUnhandledException() {
-        process.on('unhandledRejection', (reason, promise) => {
+        process.on('unhandledRejection', reason => {
             ErrorHandler.#logger.error({
                 name: reason.name,
                 message: reason.message,
             });
-            ErrorHandler.#logger.error(
-                'UNHANDLED REJECTION! 💥 Shutting down...'
-            );
+            ErrorHandler.#logger.error('UNHANDLED REJECTION! 💥 Shutting down...');
             throw reason;
         });
 
@@ -45,10 +43,7 @@ export class ErrorHandler {
                 message: err.message,
             });
 
-            ErrorHandler.#logger.error(
-                'UNCAUGHT EXCEPTION! 💥 Shutting down...'
-            );
-
+            ErrorHandler.#logger.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
             process.exit(1);
         });
     }

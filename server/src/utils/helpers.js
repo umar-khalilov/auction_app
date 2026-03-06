@@ -40,9 +40,7 @@ const paginateResponse = (data = [], page = 1, limit = 10) => {
  * @returns {object}
  */
 const omit = (obj, ...keys) => {
-    return Object.fromEntries(
-        Object.entries(obj).filter(([key]) => !keys.includes(key))
-    );
+    return Object.fromEntries(Object.entries(obj).filter(([key]) => !keys.includes(key)));
 };
 /**
  * @param {object} obj
@@ -50,9 +48,7 @@ const omit = (obj, ...keys) => {
  * @returns {object}
  */
 const pick = (obj, ...keys) => {
-    return Object.fromEntries(
-        keys.filter(key => key in obj).map(key => [key, obj[key]])
-    );
+    return Object.fromEntries(keys.filter(key => key in obj).map(key => [key, obj[key]]));
 };
 
 /**
@@ -61,19 +57,11 @@ const pick = (obj, ...keys) => {
  * @param {Array<Class>} controllers
  * @returns {object}
  */
-const makePlainDIContainer = (
-    entities = [],
-    services = [],
-    controllers = []
-) => {
+const makePlainDIContainer = (entities = [], services = [], controllers = []) => {
     const container = {};
     entities.forEach(entity => (container[entity.name] = new entity()));
-    services.forEach(
-        service => (container[service.name] = new service(container))
-    );
-    controllers.forEach(
-        controller => (container[controller.name] = new controller(container))
-    );
+    services.forEach(service => (container[service.name] = new service(container)));
+    controllers.forEach(controller => (container[controller.name] = new controller(container)));
     return container;
 };
 

@@ -1,10 +1,10 @@
-import { Algorithm, Version, hash, verify } from '@node-rs/argon2'
+import { Algorithm, Version, hash, verify } from '@node-rs/argon2';
 
 export class HashService {
     /**
      * @type {import("@node-rs/argon2").Options}
      */
-    #options
+    #options;
 
     constructor() {
         this.#options = {
@@ -14,7 +14,7 @@ export class HashService {
             parallelism: 4,
             algorithm: Algorithm.Argon2id,
             version: Version.V0x13,
-        }
+        };
     }
 
     /**
@@ -22,7 +22,7 @@ export class HashService {
      * @returns {Promise<string>}
      */
     async hashPassword(password) {
-        return hash(password, this.#options)
+        return hash(password, this.#options);
     }
 
     /**
@@ -31,6 +31,6 @@ export class HashService {
      * @returns {Promise<boolean>}
      */
     async verifyPassword(password, hash) {
-        return verify(hash, password)
+        return verify(hash, password);
     }
 }

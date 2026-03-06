@@ -5,7 +5,7 @@ export class ResponseUserDto {
     constructor(entity) {
         this.id = entity.id;
         this.name = entity.name;
-        this.surname = entity.name;
+        this.surname = entity.surname;
         this.email = entity.email;
         this.login = entity.login;
         this.birthday = entity.birthday;

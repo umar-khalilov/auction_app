@@ -16,9 +16,7 @@ const verifyAccessToken = async (req, res, next) => {
         if (bearer !== 'Bearer' || !token) {
             throw new UnauthorizedException('User is not authorizated');
         }
-        req.locals.accessToken = await new JwtService().verifyAccessToken(
-            token
-        );
+        req.locals.accessToken = await new JwtService().verifyAccessToken(token);
         next();
     } catch (error) {
         next(error);
@@ -38,9 +36,7 @@ const verifyRefreshToken = async (req, res, next) => {
         if (!refresh) {
             throw new UnauthorizedException('User is not authorizated');
         }
-        req.locals.refreshToken = await new JwtService().verifyRefreshToken(
-            refresh
-        );
+        req.locals.refreshToken = await new JwtService().verifyRefreshToken(refresh);
         next();
     } catch (error) {
         next(error);

@@ -6,11 +6,12 @@ export class AppClusterizeService {
     static #logger = new LoggerService(AppClusterizeService.name);
     static #numberOfCores = availableParallelism();
 
+    /**
+     * @param {CallableFunction} callback
+     */
     static runInCluster(callback) {
         if (cluster.isPrimary) {
-            AppClusterizeService.#logger.system(
-                `Primary server started on: ${process.pid}`
-            );
+            AppClusterizeService.#logger.system(`Primary server started on: ${process.pid}`);
             let core = 0;
             while (core < AppClusterizeService.#numberOfCores) {
                 cluster.fork();
@@ -23,9 +24,7 @@ export class AppClusterizeService {
                 cluster.fork();
             });
         } else {
-            AppClusterizeService.#logger.system(
-                `Cluster server started on: ${process.pid}`
-            );
+            AppClusterizeService.#logger.system(`Cluster server started on: ${process.pid}`);
             void callback();
         }
     }

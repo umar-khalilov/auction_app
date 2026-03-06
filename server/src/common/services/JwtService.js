@@ -1,11 +1,4 @@
-import {
-    sign,
-    verify,
-    decode,
-    TokenExpiredError,
-    JsonWebTokenError,
-    NotBeforeError,
-} from 'jsonwebtoken';
+import { sign, verify, decode, TokenExpiredError, JsonWebTokenError, NotBeforeError } from 'jsonwebtoken';
 import { TokenException } from '@common/exceptions/TokenException';
 import { configuration } from '@configs/envConfigs';
 
@@ -55,15 +48,10 @@ export class JwtService {
      */
     async genAccessToken(payload) {
         return new Promise((resolve, reject) => {
-            sign(
-                payload,
-                this.#accessJwtSecret,
-                this.#accessJwtOptions,
-                (err, token) => {
-                    if (err) reject(new TokenException());
-                    resolve(token);
-                }
-            );
+            sign(payload, this.#accessJwtSecret, this.#accessJwtOptions, (err, token) => {
+                if (err) reject(new TokenException());
+                resolve(token);
+            });
         });
     }
 
@@ -73,15 +61,10 @@ export class JwtService {
      */
     async genRefreshToken(payload) {
         return new Promise((resolve, reject) => {
-            sign(
-                payload,
-                this.#refreshJwtSecret,
-                this.#refreshJwtOptions,
-                (err, token) => {
-                    if (err) reject(new TokenException());
-                    resolve(token);
-                }
-            );
+            sign(payload, this.#refreshJwtSecret, this.#refreshJwtOptions, (err, token) => {
+                if (err) reject(new TokenException());
+                resolve(token);
+            });
         });
     }
 
@@ -91,29 +74,18 @@ export class JwtService {
      */
     async verifyAccessToken(token) {
         return new Promise((resolve, reject) => {
-            verify(
-                token,
-                this.#accessJwtSecret,
-                this.#accessJwtOptions,
-                (err, decodedData) => {
-                    if (err?.name === TokenExpiredError.name) {
-                        reject(
-                            new TokenException(
-                                `token expired: ${err.expiredAt}`
-                            )
-                        );
-                    }
-                    if (err?.name === JsonWebTokenError.name) {
-                        reject(new TokenException('token malformed'));
-                    }
-                    if (err?.name === NotBeforeError.name) {
-                        reject(
-                            new TokenException(`token not active: ${err.date}`)
-                        );
-                    }
-                    resolve(decodedData);
+            verify(token, this.#accessJwtSecret, this.#accessJwtOptions, (err, decodedData) => {
+                if (err?.name === TokenExpiredError.name) {
+                    reject(new TokenException(`token expired: ${err.expiredAt}`));
                 }
-            );
+                if (err?.name === JsonWebTokenError.name) {
+                    reject(new TokenException('token malformed'));
+                }
+                if (err?.name === NotBeforeError.name) {
+                    reject(new TokenException(`token not active: ${err.date}`));
+                }
+                resolve(decodedData);
+            });
         });
     }
 
@@ -123,29 +95,18 @@ export class JwtService {
      */
     async verifyRefreshToken(token) {
         return new Promise((resolve, reject) => {
-            verify(
-                token,
-                this.#refreshJwtSecret,
-                this.#refreshJwtOptions,
-                (err, decodedData) => {
-                    if (err?.name === TokenExpiredError.name) {
-                        reject(
-                            new TokenException(
-                                `token expired: ${err.expiredAt}`
-                            )
-                        );
-                    }
-                    if (err?.name === JsonWebTokenError.name) {
-                        reject(new TokenException('token malformed'));
-                    }
-                    if (err?.name === NotBeforeError.name) {
-                        reject(
-                            new TokenException(`token not active: ${err.date}`)
-                        );
-                    }
-                    resolve(decodedData);
+            verify(token, this.#refreshJwtSecret, this.#refreshJwtOptions, (err, decodedData) => {
+                if (err?.name === TokenExpiredError.name) {
+                    reject(new TokenException(`token expired: ${err.expiredAt}`));
                 }
-            );
+                if (err?.name === JsonWebTokenError.name) {
+                    reject(new TokenException('token malformed'));
+                }
+                if (err?.name === NotBeforeError.name) {
+                    reject(new TokenException(`token not active: ${err.date}`));
+                }
+                resolve(decodedData);
+            });
         });
     }
 
@@ -163,9 +124,6 @@ export class JwtService {
             email: user.email,
             roles: user.roles.map(({ value }) => value),
         };
-        return Promise.all([
-            this.genAccessToken(payload),
-            this.genRefreshToken(payload),
-        ]);
+        return Promise.all([this.genAccessToken(payload), this.genRefreshToken(payload)]);
     }
 }
