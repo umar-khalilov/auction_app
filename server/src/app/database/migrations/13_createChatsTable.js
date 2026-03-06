@@ -26,8 +26,7 @@ export const up = async knex => {
             .onDelete('SET NULL')
             .comment('Seller ID');
         table.string('message', 500).notNullable().comment('Message');
-        table.timestamp('created_at').defaultTo(knex.fn.now()).comment('Created at');
-        table.timestamp('updated_at').defaultTo(knex.fn.now()).comment('Updated at');
+        table.timestamps(true, true);
     });
 };
 

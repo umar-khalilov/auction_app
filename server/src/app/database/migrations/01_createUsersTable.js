@@ -18,8 +18,7 @@ export const up = async knex => {
         table.boolean('is_verified').defaultTo(false).comment('User is verified');
         table.boolean('is_deleted').defaultTo(false).comment('User is deleted');
         table.dateTime('last_visit_date').nullable().comment('User last visit date');
-        table.timestamp('created_at').notNullable().defaultTo(knex.fn.now()).comment('Created at');
-        table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now()).comment('Updated at');
+        table.timestamps(true, true);
     });
 };
 

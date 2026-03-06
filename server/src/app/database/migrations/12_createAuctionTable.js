@@ -32,8 +32,7 @@ export const up = async knex => {
         table.decimal('starting_price', 10, 2).notNullable().comment('Starting price of the auction');
         table.decimal('reserve_price', 10, 2).notNullable().comment('Reserve price of the auction');
         table.enum('currency', ['USD', 'EUR', 'GBP', 'UAH']).notNullable().comment('Currency of the auction');
-        table.timestamp('created_at').defaultTo(knex.fn.now()).comment('Created at');
-        table.timestamp('updated_at').defaultTo(knex.fn.now()).comment('Updated at');
+        table.timestamps(true, true);
     });
 };
 

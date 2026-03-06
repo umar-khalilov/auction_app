@@ -35,8 +35,7 @@ export const up = async knex => {
             .onDelete('SET NULL')
             .comment('Card ID');
         table.enum('status', ['available', 'sold', 'auctioned']).notNullable().comment('Item status');
-        table.timestamp('created_at').defaultTo(knex.fn.now()).comment('Created at');
-        table.timestamp('updated_at').defaultTo(knex.fn.now()).comment('Updated at');
+        table.timestamps(true, true);
     });
 };
 

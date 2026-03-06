@@ -18,8 +18,7 @@ export const up = async knex => {
             .comment('User ID');
         table.decimal('rating', 3, 2).notNullable().defaultTo(0.0).comment('Rating of the seller');
         table.integer('total_sales').notNullable().defaultTo(0).comment('Total number of sales');
-        table.timestamp('created_at').defaultTo(knex.fn.now()).comment('Created at');
-        table.timestamp('updated_at').defaultTo(knex.fn.now()).comment('Updated at');
+        table.timestamps(true, true);
     });
 };
 

@@ -19,8 +19,7 @@ export const up = async knex => {
         table.text('bid_history').nullable().comment('History of bids made by the buyer');
         table.decimal('rating', 3, 2).notNullable().defaultTo(0.0).comment('Rating of the buyer');
         table.integer('total_bids').notNullable().defaultTo(0).comment('Total number of bids');
-        table.timestamp('created_at').defaultTo(knex.fn.now()).comment('Created at');
-        table.timestamp('updated_at').defaultTo(knex.fn.now()).comment('Updated at');
+        table.timestamps(true, true);
     });
 };
 
