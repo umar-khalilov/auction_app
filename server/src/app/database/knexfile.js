@@ -17,19 +17,19 @@ export default {
                 acquireTimeoutMillis: 30000,
                 idleTimeoutMillis: 30000,
                 reapIntervalMillis: 1000,
-                afterCreate: (conn, done) => {
-                    conn.query('SET timezone="UTC";', err => {
-                        if (err) done(err, conn);
-                        else done(null, conn);
+                afterCreate: (connection, done) => {
+                    connection.query('SET timezone="UTC";', err => {
+                        if (err) done(err, connection);
+                        else done(null, connection);
                     });
                 },
             },
         },
         migrations: {
-            directory: dirname + '/src/db/migrations',
+            directory: dirname + '/migrations',
         },
         seeds: {
-            directory: dirname + '/src/db/seeds',
+            directory: dirname + '/seeds',
         },
     },
     staging: {},
